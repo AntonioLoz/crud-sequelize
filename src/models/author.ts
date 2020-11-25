@@ -13,7 +13,7 @@ export class Author extends Model {
 
 Author.init({
     
-    username:{
+    name:{
         type: new DataTypes.STRING(128),
         allowNull:true,
     },
@@ -22,9 +22,9 @@ Author.init({
         allowNull:true,
     }
 }, {
-    tableName: 'users',
+    tableName: 'authors',
     sequelize: database
 });
 
 Author.hasMany(Book);
-Book.belongsTo(Author);
+Book.belongsTo(Author, {foreignKey: 'id_author'});
