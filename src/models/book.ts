@@ -21,6 +21,16 @@ Book.init(
             type: new DataTypes.STRING,
             allowNull: false
         },
+        idAuthor: {
+            field: 'id_author',
+            type: new DataTypes.STRING,
+            allowNull: true,
+            references: {
+                model: 'authors',
+                key: 'id'
+            }
+            
+        }
     }, 
     {
         tableName: "books",

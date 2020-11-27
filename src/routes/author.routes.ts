@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { deleteAuthor, getAuthorById, postAuthor, updateAuthor } from "../controllers/author.controller";
-import { getUserById, postUser, updateUser, deleteUser } from "../controllers/user.controller";
+import { authorBook, deleteAuthor, deleteRelation, getAuthorById, postAuthor, updateAuthor } from "../controllers/author.controller";
 
 
 
@@ -9,9 +8,11 @@ import { getUserById, postUser, updateUser, deleteUser } from "../controllers/us
      
     constructor(){
         this.router.get('/:id', getAuthorById);
-        this.router.post('/', postAuthor);
+        this.router.post('/authorbook/:id', authorBook);
+        this.router.post('/', postAuthor); 
         this.router.put('/:id', updateAuthor);
         this.router.delete('/:id', deleteAuthor);
+        this.router.delete('/deleterelation/:id', deleteRelation);
     }
    
 
