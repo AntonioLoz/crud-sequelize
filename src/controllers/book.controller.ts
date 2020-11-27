@@ -12,18 +12,25 @@ class BookController {
 
             const book: Book | null = await Book.findOne({
                 where: {id: request.params.id},
+                attributes: [
+                    'title',
+                    'isbn',
+                    'id',
+                    'id_author'
+                ] ,
                 include: Author
             });
 
-            response.send(book);
+            
 
             if(book === null) {
                 throw new Error("Book not found");
             }
-
-        }catch(err) {
+            response.send(book);
+        }catch(err) {            
+            response.sendStatus(404);
             console.log(err);
-            response.status(404);
+            
         }
     }
 

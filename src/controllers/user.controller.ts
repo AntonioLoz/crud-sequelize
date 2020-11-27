@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import  jwt  from 'jsonwebtoken';
 import { User } from '../models/user';
 
 class UserController {
@@ -10,11 +11,11 @@ class UserController {
 
             const user: User | null = await User.findByPk(request.params.id);
 
-            response.send(user);
-
             if(user === null) {
                 throw new Error("User not found");
             }
+
+            response.send(user);
 
         }catch(err) {
             console.log(err);
@@ -22,13 +23,14 @@ class UserController {
         }
     }
 
+
     public async postUser(request: Request, response: Response) {
         try {
             const userParams = request.body;            
 
-            const result = await User.create(userParams);
+            let user: User = await User.create(userParams);
 
-            response.send(result);
+            response.send(user);
         }catch(err){
             console.log(err);
         }
