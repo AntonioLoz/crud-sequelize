@@ -23,6 +23,21 @@ class AuthorController {
         }
     }
 
+
+    public async postAuthor(request: Request, response: Response) {
+        try {
+            const authorParams = request.body;
+            console.log("TEST[AuthorController]:", authorParams);
+            
+
+            const result = await Author.create(authorParams);
+
+            response.send(result);
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     public async postAuthorBook(request: Request, response: Response) {
         
         const bookToSave: Book = request.body;
@@ -58,20 +73,6 @@ class AuthorController {
 
 
 
-    }
-
-    public async postAuthor(request: Request, response: Response) {
-        try {
-            const authorParams = request.body;
-            console.log("TEST[AuthorController]:", authorParams);
-            
-
-            const result = await Author.create(authorParams);
-
-            response.send(result);
-        }catch(err){
-            console.log(err);
-        }
     }
 
     public async updateAuthor(request: Request, response: Response) {
@@ -131,4 +132,3 @@ export const postAuthor = new AuthorController().postAuthor;
 export const updateAuthor = new AuthorController().updateAuthor;
 export const deleteAuthor = new AuthorController().deleteAuthor;
 export const authorBook = new AuthorController().postAuthorBook;
-// export const deleteRelation = new AuthorController().deleteRelation;
