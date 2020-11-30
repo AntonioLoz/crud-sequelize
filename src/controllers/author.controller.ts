@@ -23,9 +23,12 @@ class AuthorController {
         }
     }
 
+
     public async postAuthor(request: Request, response: Response) {
         try {
-            const authorParams = request.body;            
+            const authorParams = request.body;
+            console.log("TEST[AuthorController]:", authorParams);
+            
 
             const result = await Author.create(authorParams);
 
@@ -103,6 +106,7 @@ class AuthorController {
             
         }
     }
+<<<<<<< HEAD
     
     public async deleteBookAssociationToAuthor(request: Request, response: Response) {
         
@@ -120,6 +124,27 @@ class AuthorController {
             
         }
     }
+=======
+
+    // public async deleteRelation(request: Request,  response: Response) {
+
+    //     const idBook = Number(request.body);
+    //     const idAuthor = request.params.id;
+        
+    //     const book: Book | null = await Book.findByPk(idBook);
+
+    //     if(){
+    //         await Book.update(
+    //             {
+    //                 id_author: null
+    //             },
+    //             {
+    //                 where: {id: idBook}
+    //             })
+    //     }
+
+    // }
+>>>>>>> 2ab733eb3502fcd26a55d663bc555c1d8e9c679c
 }
 
 export const getAuthorById = new AuthorController().getAuthorById;
@@ -127,4 +152,7 @@ export const postAuthor = new AuthorController().postAuthor;
 export const updateAuthor = new AuthorController().updateAuthor;
 export const deleteAuthor = new AuthorController().deleteAuthor;
 export const authorBook = new AuthorController().postAuthorBook;
+<<<<<<< HEAD
 export const deleteBookAssociationToAuthor = new AuthorController().deleteBookAssociationToAuthor;
+=======
+>>>>>>> 2ab733eb3502fcd26a55d663bc555c1d8e9c679c
