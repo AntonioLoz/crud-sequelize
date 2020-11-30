@@ -50,7 +50,7 @@ class AuthorController {
             
             if(book !== null) {
                const pepe = Book.update({
-                    idAuthor: request.body.idAuthor,
+                    idAuthor: request.params.id,
                 }, {
                     where: {id: book.id}
                 });
@@ -103,6 +103,23 @@ class AuthorController {
             
         }
     }
+    
+    public async deleteBookAssociationToAuthor(request: Request, response: Response) {
+        
+        try{
+           
+            // Cogemos el body param con el id del libro que que¡remo liberar
+           // Lo buscamos en la base de datoa el libreo
+           // Una vez tenemos el libro, le quitamos el autor (solamente si el autor del libro era el que viene por URL param)
+
+            response.sendStatus(200);
+
+        }catch(err) {
+            console.log(err);
+            response.sendStatus(404);
+            
+        }
+    }
 }
 
 export const getAuthorById = new AuthorController().getAuthorById;
@@ -110,3 +127,4 @@ export const postAuthor = new AuthorController().postAuthor;
 export const updateAuthor = new AuthorController().updateAuthor;
 export const deleteAuthor = new AuthorController().deleteAuthor;
 export const authorBook = new AuthorController().postAuthorBook;
+export const deleteBookAssociationToAuthor = new AuthorController().deleteBookAssociationToAuthor;

@@ -16,8 +16,6 @@ app.get("/", (req: any, res: any ) => {
     res.sendFile(path.resolve("./index.html"));
 });
 
-app.listen(app.get('port'), () => console.log("Server is running in port 8080"));
-
 
 const server = app.listen(app.get("port"), () => {
     console.log(`listening on ${app.get('port')}`);

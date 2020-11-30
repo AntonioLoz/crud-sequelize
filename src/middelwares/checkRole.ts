@@ -1,12 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-export const checkRole = (request: Request, response: Response, next: NextFunction) => {
+export const checkRole = (RoleToCheck: string) => {
+   return (request: Request, response: Response, next: NextFunction) => {
+        const principal = response.locals.principal;
+        console.log("TEST[CheckRole]", principal);        
 
-    
-    const principal = response.locals.principal;
-
-    console.log("TEST[CheckRole]", principal);        
-
-    next();
+        next();
+    }
 }
