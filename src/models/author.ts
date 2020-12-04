@@ -21,10 +21,12 @@ Author.init({
         type: new DataTypes.STRING(128),
         allowNull:true,
     }
-}, {
-    tableName: 'authors',
+}, 
+{
+    tableName: 'Author',
     sequelize: database
 });
 
+
 Author.hasMany(Book);
-Book.belongsTo(Author, {foreignKey: 'id_author'});
+Book.belongsTo(Author);

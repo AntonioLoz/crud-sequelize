@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { authorBook, deleteAuthor, getAuthorById, postAuthor, updateAuthor } from "../controllers/author.controller";
+import { deleteAuthor, getAuthorById, postAuthor, updateAuthor } from "../controllers/author.controller";
 
 
 
@@ -10,8 +10,7 @@ import { authorBook, deleteAuthor, getAuthorById, postAuthor, updateAuthor } fro
      
     constructor(){
         this.router.get('/:id', getAuthorById);
-        this.router.post('/authorbook/:id', authorBook);
-        this.router.post('/', postAuthor); 
+        this.router.post('/', postAuthor);
         this.router.put('/:id', updateAuthor);
         this.router.delete('/:id', deleteAuthor);
     }
