@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config/config.json';
-import { ERole, Role } from '../models/Role';
+import { ERole, Role } from '../models/role';
 import { User } from '../models/user';
 
 class AuthController {

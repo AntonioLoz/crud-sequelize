@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import { Request, Response } from "express";
 import { Author } from "../models/author";
 import { Book } from "../models/book";
-=======
-import {Request, Response} from "express";
-import { Author } from "../models/author";
->>>>>>> model-featuring
 
 class AuthorController {
 
@@ -28,18 +23,12 @@ class AuthorController {
         }
     }
 
-<<<<<<< HEAD
 
     public async postAuthor(request: Request, response: Response) {
         try {
             const authorParams = request.body;
             console.log("TEST[AuthorController]:", authorParams);
             
-=======
-    public async postAuthor(request: Request, response: Response) {
-        try {
-            const authorParams = request.body;            
->>>>>>> model-featuring
 
             const result = await Author.create(authorParams);
 
@@ -49,7 +38,6 @@ class AuthorController {
         }
     }
 
-<<<<<<< HEAD
     public async postAuthorBook(request: Request, response: Response) {
         
         const bookToSave: Book = request.body;
@@ -87,8 +75,6 @@ class AuthorController {
 
     }
 
-=======
->>>>>>> model-featuring
     public async updateAuthor(request: Request, response: Response) {
         
         try{
@@ -108,11 +94,7 @@ class AuthorController {
     public async deleteAuthor(request: Request, response: Response) {
         
         try{
-<<<<<<< HEAD
-            const user = await Author.destroy({
-=======
             const author = await Author.destroy({
->>>>>>> model-featuring
                 where: {id: request.params.id}
             });
 
@@ -124,7 +106,6 @@ class AuthorController {
             
         }
     }
-<<<<<<< HEAD
 
     // public async deleteRelation(request: Request,  response: Response) {
 
@@ -144,16 +125,10 @@ class AuthorController {
     //     }
 
     // }
-=======
->>>>>>> model-featuring
 }
 
 export const getAuthorById = new AuthorController().getAuthorById;
 export const postAuthor = new AuthorController().postAuthor;
 export const updateAuthor = new AuthorController().updateAuthor;
-<<<<<<< HEAD
 export const deleteAuthor = new AuthorController().deleteAuthor;
 export const authorBook = new AuthorController().postAuthorBook;
-=======
-export const deleteAuthor = new AuthorController().deleteAuthor;
->>>>>>> model-featuring
