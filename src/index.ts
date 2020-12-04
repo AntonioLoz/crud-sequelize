@@ -12,7 +12,6 @@ app.use(express.json());
 
 app.set('port', 8080);
 
-<<<<<<< HEAD
 app.get("/", (req: any, res: any ) => {
     res.sendFile(path.resolve("./index.html"));
 });
@@ -36,9 +35,6 @@ io.on("connection", (socket:any) => {
     })
     
 });
-=======
-app.listen(app.get('port'), () => console.log("-------------------------------Server is running in port 8080---------------------------------------"));
->>>>>>> 2ab733eb3502fcd26a55d663bc555c1d8e9c679c
 
 app.use('/users', usersRoutes.router );
 app.use('/books', bookRoutes.router );
