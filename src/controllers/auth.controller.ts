@@ -3,12 +3,17 @@ import jwt from 'jsonwebtoken';
 import config from '../config/config.json';
 import { ERole, Role } from '../models/role';
 import { User } from '../models/user';
+import bcrypt from 'bcrypt';
+import { BCryptUtil } from '../utils/bcryptUtil';
 
 class AuthController {
 
     public async login (request: Request, response: Response) {
         
+        
+
         try {
+            
             const password: string = request.body.password;
             const emailIn: string = request.body.email;
 
@@ -18,19 +23,21 @@ class AuthController {
                 attributes: ['username', 'familyname', 'password', 'email','id_role']
             });
 
-            
-        
 
-            if(user === null || user === undefined || password !== user.password) {
+            if(user === null || user === undefined || ! await BCryptUtil.compare(password, user.password)) {
                 throw new Error("Incorrect email or password");
             }
+
+            
+
+            console.log(user);
 
             const role: ERole = user.getDataValue('Role').dataValues.name;
 
             const token = jwt.sign(
                 { 
-                    email: request.body.email,
-                    password: request.body.password,
+                    email: user.email,
+                    password: user.password,
                     role: role
                 },
                 config.jwtSecret,
@@ -44,6 +51,14 @@ class AuthController {
             response.sendStatus(401);
         }
     }
+
+    public async compare(password: string, encryptPass: string): Promise<boolean> {
+
+        const b: boolean  = await bcrypt.compare(password, encryptPass);
+        
+        return b;
+    }
+
 
 }
 

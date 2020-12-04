@@ -9,8 +9,8 @@ import { checkRole } from "../middelwares/checkRole";
     public router:Router = Router();
      
     constructor(){
-        this.router.get('/:id', [checkJwt, checkRole], getBookById);
-        this.router.post('/', postBook);
+        this.router.get('/:id', [checkJwt, checkRole('ADMIN')], getBookById);
+        this.router.post('/', [checkJwt, checkRole('CLIENT')], postBook);
         this.router.put('/:id', updateBook);
         this.router.delete('/:id', deleteBook);
     }
