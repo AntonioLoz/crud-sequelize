@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import  jwt  from 'jsonwebtoken';
 import { User } from '../models/user';
+import bcrypt from 'bcrypt';
+import { BCryptUtil } from '../utils/bcryptUtil'
 
 class UserController {
 
 
-    // GET
     public async getUserById(request: Request,  response: Response) {
         try {
 
@@ -26,13 +26,19 @@ class UserController {
 
     public async postUser(request: Request, response: Response) {
         try {
-            const userParams = request.body;            
+            let userParams = request.body;            
+            
+            const password: string = await BCryptUtil.encrypt(userParams.password);
 
-            let user: User = await User.create(userParams);
+            userParams.password = password;
 
-            response.send(user);
+            const user: User = await User.create(userParams);
+
+            response.sendStatus(200);
+
         }catch(err){
             console.log(err);
+            response.sendStatus(500);
         }
     }
 
@@ -67,6 +73,7 @@ class UserController {
             
         }
     }
+
 }
 
 export const getUserById = new UserController().getUserById;
