@@ -23,10 +23,9 @@ Author.init({
     }
 }, 
 {
-    tableName: 'Author',
+    tableName: 'authors',
     sequelize: database
 });
 
 
-Author.hasMany(Book);
-Book.belongsTo(Author);
+

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { database } from "../database";
+import { Author } from "./author";
 
 export class Book extends Model{
 
@@ -35,4 +36,8 @@ Book.init(
     {
         tableName: "books",
         sequelize: database
-    })
+    }
+);
+
+Author.hasMany(Book);
+Book.belongsTo(Author, {foreignKey: 'id_author'});
